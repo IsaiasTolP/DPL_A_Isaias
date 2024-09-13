@@ -20,3 +20,13 @@
 - Escribimos Hola en 1.txt rama v0.2.
 - Hacer commit en ambas.
 - Hacer merge con hacia la main.
+
+## Listar Ramas
+- git branch --no-merged
+Sería la v0.2
+- git branch --merged
+Sería la main
+
+## Arreglar conflictos
+![Captura_2](images/Captura_2.png)
+En la imagen vemos el solucionador de merge de VScode, he decido que mantendre el hola de la versión main.
