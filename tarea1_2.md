@@ -10,3 +10,7 @@
 - git add .
 - git commit -m "Se crea rama de version v0.2"
 - git push --set-upstream origin v0.2
+
+## Merge directo
+- git checkout main
+- gi
