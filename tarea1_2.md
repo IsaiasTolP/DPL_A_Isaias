@@ -8,4 +8,5 @@
 
 ## Confirmar los cambios al remoto.
 - git add .
-- git commit -m "Se crea rama de versión v0.2"
+- git commit -m "Se crea rama de version v0.2"
+- git push --set-upstream origin v0.2
