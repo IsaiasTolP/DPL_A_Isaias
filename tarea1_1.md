@@ -11,3 +11,8 @@
 
 ## Push inicial
 - git push
+
+## Ignorar archivos
+- touch privado.txt
+- mkdir privada
+- touch .gitignore
