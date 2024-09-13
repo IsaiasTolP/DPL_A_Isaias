@@ -13,4 +13,10 @@
 
 ## Merge directo
 - git checkout main
-- gi
+- git merge v0.2
+
+## Merge con conflicto
+- Escribimos Hola en 1.txt rama main.
+- Escribimos Hola en 1.txt rama v0.2.
+- Hacer commit en ambas.
+- Hacer merge con hacia la main.
