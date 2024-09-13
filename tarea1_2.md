@@ -30,3 +30,4 @@ Sería la main
 ## Arreglar conflictos
 ![Captura_2](images/Captura_2.png)
 En la imagen vemos el solucionador de merge de VScode, he decido que mantendre el hola de la versión main.
+Lo bueno de esto es que el commit de la v0.2 se mantiene intacto.
