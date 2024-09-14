@@ -42,3 +42,12 @@ Lo bueno de esto es que el commit de la v0.2 se mantiene intacto.
 ![Captura_3](images/Captura_3.png)
 
 ## Crear una organización
+
+
+## Crear equipos
+
+## Crear index.html
+
+## Crear pull requests
+
+## Gestionar pull requests
