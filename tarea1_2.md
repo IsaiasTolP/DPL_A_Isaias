@@ -43,8 +43,10 @@ Lo bueno de esto es que el commit de la v0.2 se mantiene intacto.
 
 ## Crear una organización
 - [Enlace organización](https://github.com/orgdpl-IsaiasTolP)
+![Captura_4](images/Captura_4.JPG)
 
 ## Crear equipos
+![Captura_5](images/Captura_5.JPG)
 
 ## Crear index.html
 
