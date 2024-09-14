@@ -35,3 +35,10 @@ Lo bueno de esto es que el commit de la v0.2 se mantiene intacto.
 ## Borrar la rama
 - git tag -a v0.2 -m "Version 0.2"
 - git branch -d v0.2
+
+## Listado de Confirmaciones
+- git log
+
+![Captura_3](images/Captura_3.png)
+
+## Crear una organización
