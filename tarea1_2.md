@@ -31,3 +31,7 @@ Sería la main
 ![Captura_2](images/Captura_2.png)
 En la imagen vemos el solucionador de merge de VScode, he decido que mantendre el hola de la versión main.
 Lo bueno de esto es que el commit de la v0.2 se mantiene intacto.
+
+## Borrar la rama
+- git tag -a v0.2 -m "Version 0.2"
+- git branch -d v0.2
