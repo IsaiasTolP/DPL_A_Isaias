@@ -29,7 +29,7 @@ Sería la main
 
 ## Arreglar conflictos
 ![Captura_2](images/Captura_2.png)
-En la imagen vemos el solucionador de merge de VScode, he decido que mantendre el hola de la versión main.
+- En la imagen vemos el solucionador de merge de VScode, he decido que mantendre el hola de la versión main.
 Lo bueno de esto es que el commit de la v0.2 se mantiene intacto.
 
 ## Borrar la rama
@@ -42,14 +42,24 @@ Lo bueno de esto es que el commit de la v0.2 se mantiene intacto.
 ![Captura_3](images/Captura_3.png)
 
 ## Crear una organización
-- [Enlace organización](https://github.com/orgdpl-IsaiasTolP)
+[Enlace organización](https://github.com/orgdpl-IsaiasTolP)
 ![Captura_4](images/Captura_4.JPG)
 
 ## Crear equipos
 ![Captura_5](images/Captura_5.JPG)
+![Equipos](images/Equipos.png)
+- Equipos con compañeros
 
 ## Crear index.html
+![ÍndiceHTML](images/Captura-html.png)
+- Se ha creado el archivo html.
 
 ## Crear pull requests
+![Fork](images/Fork.png)
+- Se hace un Fork
+![myPull](images/mi_pull.png)
+- Se hace una solicitud de pull
 
 ## Gestionar pull requests
+![Acepta Pull](images/Pull.png)
+- Se acepta la solicitud de pull de un compañero
