@@ -1,7 +1,8 @@
 # Redirecciones en PHP
 
 ## Creamos un PHP index.php
-- El fichero contendrá nuestro html con el enlace al que haremos redirección
+- El fichero contendrá nuestro html con el enlace al que haremos redirección y al que pasaremos los datos que creamos pertinentes, en mi caso
+`<a href="pagina2.php?name=alex">Redirección</a>`
 
 ## Creamos una página2.php que redirija a pagina3.php
 - El fichero pagina2.php tiene que contener `header( "location: pagina3.php?name=" .$_GET["name"]);` para realizar la redirección
