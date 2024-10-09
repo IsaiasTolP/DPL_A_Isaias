@@ -27,7 +27,7 @@ if (isset($_POST['insert'])) {
 
 // Mostramos los usuarios
 if (isset($_POST['select'])) {
-    $sql = "SELECT id, nombre, email FROM users"; // La sentencia SQL de selección(mostrar)
+    $sql = "SELECT * FROM users";
     $result = mysqli_query($conn, $sql);
 
     if ($result->num_rows > 0) {
@@ -35,7 +35,7 @@ if (isset($_POST['select'])) {
             echo "ID: " . $row["id"]. " - Nombre: " . $row["nombre"]. " - Email: " . $row["email"]. "<br>";
         }
     } else {
-        echo "0 resultados"; // Si no hay datos en las tablas deberíamos mostrar que no hay resultados
+        echo "0 resultados";
     }
 }
 
