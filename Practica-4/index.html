@@ -8,10 +8,13 @@
 </head>
 <body>
     <h1>Gestión de usuarios</h1>
+
     <h2>Insertar usuario</h2>
     <form action="index.php" method="post">
         <input type="text" name="name" placeholder="Name" required>
-        <input type="email" name="email" placeholder="email" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Contraseña" required>
+        <input type="password" name="confirm_password" placeholder="Confirmar contraseña" required>
         <button type="submit" name="insert">Crear usuario</button>
     </form>
 
@@ -24,7 +27,9 @@
     <form action="index.php" method="post">
         <input type="number" name="userId" placeholder="User ID" required>
         <input type="text" name="name" placeholder="Name" required>
-        <input type="email" name="email" placeholder="email" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="new_password" placeholder="Nueva contraseña">
+        <input type="password" name="confirm_new_password" placeholder="Confirmar nueva contraseña">
         <button type="submit" name="update">Actualizar usuario</button>
     </form>
 
