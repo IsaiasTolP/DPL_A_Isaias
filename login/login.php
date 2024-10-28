@@ -1,7 +1,7 @@
 <?php
 $servername = "sql208.infinityfree.com"; // El servidor
 $username = "if0_37574158"; // El usuario
-$password = "FKrqKTo38g"; // La contraseña para acceder al administrador. Esto no es seguro hacerlo pero no pasa nada si es solo una prueba
+$password = ""; // La contraseña para acceder al administrador. Esto no es seguro hacerlo pero no pasa nada si es solo una prueba
 $dbname = "if0_37574158_users"; // Nombre de la base de datos
 
 // Creamos la conexión
@@ -25,7 +25,9 @@ if (isset($_POST['login'])) {
         $row = $result->fetch_assoc();
         // Verificar la contraseña
         if (password_verify($password, $row['password'])) {
-            echo "Login exitoso. Bienvenido, " . $row['nombre'];
+            // Login exitoso, redirigir al usuario a prueba/index.htm
+            header("Location: /prueba4/index.html");
+            exit(); // Finalizamos el script para evitar cualquier ejecución posterior
         } else {
             echo "Contraseña incorrecta.";
         }
