@@ -53,3 +53,19 @@ WISA es otro acrónimo que representa un conjunto de tecnologías, pero está m�
 - Integración profunda con otras tecnologías de Microsoft, lo que facilita el desarrollo en entornos empresariales.
 - Ideal para aplicaciones empresariales y grandes sistemas que requieren alta disponibilidad y escalabilidad.
 - Soporte robusto y herramientas de desarrollo avanzadas.
+
+
+## 3. Instalación en sistemas Ubuntu de Servidor apache
+
+### Instalamos apache server
+- Primero `sudo apt update` y luego `sudo apt install apache2`.
+
+### Comprobamos su estado
+- Hacemos `sudo systemctl status apache2` para comprobar que funciona por terminal.
+- Comprobamos que funcionan en navegador.
+![Captura](Captura-apache-navegador.png)
+
+### Cambiamos el puerto de escucha al puerto 82
+- Entramos al archivo de configuración con `sudo nano /etc/apache2/ports.conf`
+- Cambiamos la línea que pone listen XX(Normalmente este número será 80) a listen 82, luego guardamos y salimos.
+- Reiniciamos la configuración con `sudo systemctl restart apache2`
