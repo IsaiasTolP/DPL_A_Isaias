@@ -69,3 +69,81 @@ WISA es otro acrónimo que representa un conjunto de tecnologías, pero está m�
 - Entramos al archivo de configuración con `sudo nano /etc/apache2/ports.conf`
 - Cambiamos la línea que pone listen XX(Normalmente este número será 80) a listen 82, luego guardamos y salimos.
 - Reiniciamos la configuración con `sudo systemctl restart apache2`
+
+## Instalación de Tomcat en sistemas Ubuntu
+
+### Instalar Java
+- Primero instalamos Java con `sudo apt update` y luego `sudo apt install default-jdk`
+
+### Creamos un usuario tomcat
+- Primero creamos un grupo `sudo groupadd tomcat`
+- Luego un usuario `sudo useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat`
+
+### Instalamos tomcat en Ubuntu
+- Entramos a 'tmp' con `cd /tmp`
+- Descargamos tomcat con curl `curl -O https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.96/bin/apache-tomcat-9.0.96.tar.gz`
+
+### Otorgamos permisos de actualización
+- Hacemos todas estas operaciones en orden:
+1. sudo mkdir /opt/tomcat
+2. cd /opt/tomcat
+3. sudo tar xzvf /tmp/apache-tomcat-9.0.*tar.gz -C /opt/tomcat --strip-components=1
+4. sudo chgrp -R tomcat /opt/tomcat
+5. sudo chmod -R g+r conf
+6. sudo chmod g+x conf
+7. sudo chown -R tomcat webapps/ logs/ work/ temp/
+
+### Crear un archivo de la unidad systemd
+- Entramos a modificar el archivo `sudo nano /etc/systemd/system/tomcat.service`
+- Pegamos la siguiente configuración, guardamos y cerramos
+```
+[Unit]
+Description=Apache Tomcat Web Application Container
+After=network.target
+
+[Service]
+Type=forking
+Environment=JAVA_HOME=/usr/lib/jvm/java-1.11-openjdk-amd64/
+Environment=CATALINA_PID=/opt/tomcat/temp/tomcat.pid
+Environment=CATALINA_Home=/opt/tomcat
+Environment=CATALINA_BASE=/opt/tomcat
+Environment=’CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC’
+Environment=’JAVA_OPTS.awt.headless=true -Djava.security.egd=file:/dev/v/urandom’
+
+ExecStart=/opt/tomcat/bin/startup.sh
+ExecStop=/opt/tomcat/bin/shutdown.sh
+
+User=bae2
+Group=bae2
+UMask=0007
+RestartSec=10
+Restart=always
+
+[Install]
+
+WantedBy=multi-user.target
+```
+
+- Reiniciamos `sudo systemctl daemon-reload`
+- Entramos a la carpeta `cd /opt/tomcat/bin`
+- Ejecutamos el servicio `sudo ./startup.sh run`
+
+### Ajustamos el firewall
+- sudo ufw allow 8080
+
+### Configurar la interfaz de administración de Tomcat
+- Hacemos `sudo nano /opt/tomcat/conf/tomcat-users.xml` para entrar al fichero donde modificaremos los usuarios y sus permisos.
+- Modificamos esta sección 
+```
+tomcat-users.xml — Admin User
+<tomcat-users . . .>
+<tomcat-users . . .>
+<user username="admin" password="password" roles="manager-gui,admin-gui"/>
+</tomcat-users>
+```
+
+- Para abri el fichero de la aplicación manager usamos `sudo nano /opt/tomcat/webapps/manager/META-INF/context.xml`
+- Para el de la aplicación Host Manager `sudo nano /opt/tomcat/webapps/host-manager/META-INF/context.xml`
+- Por último reiniciamos el servicio `sudo systemctl restart tomcat`
+- Hacemos `sudo systemctl status tomcat` y todo deberia estar funcionando correctamente.
+![Captura](Captura-status.png)
