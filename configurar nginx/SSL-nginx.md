@@ -6,37 +6,36 @@ Antes de comenzar, asegúrate de tener:
 1. Un servidor con Nginx instalado.
 2. Acceso al servidor con privilegios de administrador.
 3. Un dominio apuntado a la dirección IP del servidor.
-4. Un certificado SSL y una clave privada (o usar Let’s Encrypt para generarlo).
+4. OpenSSL instalado en el servidor.
 
 ---
 
-## Paso 1: Instalar Certbot 
-Ejecuta los siguientes comandos para instalar Certbot:
+## Paso 1: Generar un certificado SSL autofirmado con OpenSSL
+Si no tienes un certificado SSL de una autoridad certificadora (CA), puedes generar un certificado autofirmado usando OpenSSL. Este tipo de certificado es adecuado para pruebas o entornos internos.
+
+### Crear un par de claves y un certificado autofirmado
+Ejecuta el siguiente comando para generar una clave privada y un certificado SSL:
 
 ```bash
-sudo apt update
-sudo apt install certbot python3-certbot-nginx -y
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/tu-dominio.key -out /etc/ssl/certs/tu-dominio.crt
 ```
+
+Durante el proceso, OpenSSL te pedirá información como:
+
+- **Country Name** (Código de dos letras del país, ej. `US` para Estados Unidos, `ES` para España).
+- **State or Province Name** (Provincia o estado).
+- **Locality Name** (Ciudad).
+- **Organization Name** (Nombre de tu organización).
+- **Common Name** (El dominio del certificado, ej. `tu-dominio.com`).
+
+Esto generará:
+
+- Una clave privada en `/etc/ssl/private/tu-dominio.key`
+- Un certificado en `/etc/ssl/certs/tu-dominio.crt`
 
 ---
 
-## Paso 2: Obtener un Certificado SSL con Let’s Encrypt
-Para generar un certificado SSL con Let’s Encrypt, ejecuta:
-
-```bash
-sudo certbot --nginx -d tu-dominio.com -d www.tu-dominio.com
-```
-
-Certbot editará automáticamente el archivo de configuración de Nginx para habilitar SSL.
-
----
-
-## Paso 3: Configurar SSL manualmente
-Si ya tienes un certificado SSL, y la configuración no se ha realizado correctamente colócalo en el servidor. Por ejemplo:
-
-- Certificado: `/etc/ssl/certs/tu-dominio.crt`
-- Clave privada: `/etc/ssl/private/tu-dominio.key`
-
+## Paso 2: Configurar Nginx para usar el certificado SSL
 Edita el archivo de configuración de tu servidor en Nginx. Normalmente se encuentra en:
 
 ```
@@ -72,7 +71,7 @@ Guarda los cambios y cierra el archivo.
 
 ---
 
-## Paso 4: Verificar la Configuración de Nginx
+## Paso 3: Verificar la Configuración de Nginx
 Antes de reiniciar Nginx, verifica que la configuración sea correcta:
 
 ```bash
@@ -87,5 +86,22 @@ sudo systemctl restart nginx
 
 ---
 
-## Paso 5: Verificar la Instalación SSL
+## Paso 4: Verificar la Instalación SSL
 1. Abre un navegador y accede a tu dominio con `https://`.
+
+---
+
+## Paso 5: Obtener un certificado de una autoridad certificadora (CA)
+Aunque un certificado autofirmado es útil para pruebas, no es confiable para producción.
+
+Para instalarlo:
+
+1. Guarda los archivos del certificado proporcionados por la CA (normalmente incluyen el certificado principal y el intermedio).
+2. Actualiza las rutas en el archivo de configuración de Nginx:
+
+```nginx
+ssl_certificate /ruta/al/certificado_proporcionado.crt;
+ssl_certificate_key /ruta/a/tu-clave-privada.key;
+```
+
+3. Reinicia Nginx.
