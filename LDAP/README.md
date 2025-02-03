@@ -97,4 +97,9 @@ givenName: isauwunter
 - Modificamos `sudo nano /etc/pam.d/common-session`: Añadimos una nueva linea `session optional` con `pam_mkhomedir.so skel=/etc/skel umask=077`
 - ldapsearch -x -H ldap://192.168.1.8 -b "dc=isauwuntu,dc=local"
 
+- `sudo su - isauwunter`
 ## Configuración cliente sesión gráfica
+- Nueva terminal
+- `sudo apt install nslcd`
+  - Comprobar que esté bien
+- sudo reboot
